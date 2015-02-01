@@ -21,6 +21,7 @@
     <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" android:background="@drawable/box" android:id="@+id/MathSquares">
+        <!-- TODO Put button styling into xml...-->
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
@@ -29,11 +30,15 @@
             <Button
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/button1" android:layout_weight="1"/>
+                    android:id="@+id/button0"
+                    android:layout_weight="1"
+                    android:textSize="58dp"/>
             <Button
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/button2" android:layout_weight="1"/>
+                    android:id="@+id/button1"
+                    android:layout_weight="1"
+                    android:textSize="58dp"/>
         </TableRow>
         <TableRow
                 android:layout_width="fill_parent"
@@ -42,11 +47,15 @@
             <Button
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/button3" android:layout_weight="1"/>
+                    android:id="@+id/button2"
+                    android:layout_weight="1"
+                    android:textSize="58dp"/>
             <Button
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/button4" android:layout_weight="1"/>
+                    android:id="@+id/button3"
+                    android:layout_weight="1"
+                    android:textSize="58dp"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
