@@ -2,6 +2,7 @@ package com.example.DefineMath;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
@@ -53,11 +54,24 @@ public class DefineGame extends Activity {
         choiceButtons[2] = (Button)findViewById(R.id.button2);
         choiceButtons[3] = (Button)findViewById(R.id.button3);
 
-        //Choose 4 random numbers
+        //Initialize 4 random numbers
         for (int x = 0; x < CHOICES; x++) {
             int choice = generateChoice();
             currentNumbers[x] = choice;
             setButtonText(x, choice);
+
+            //Set listeners to each Button
+            final int thisButtonIndex = x;
+            choiceButtons[x].setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //On Button press, check if number matches description
+                    //and a whole bunch of other stuff...
+
+                    choiceMadeHandler(thisButtonIndex);
+                }
+            });
         }
 
         allPossibleDefs = new int[CHOICES][];
@@ -65,7 +79,18 @@ public class DefineGame extends Activity {
 
     }
 
-
+    /* pre: 0 <= index < CHOICES
+     * Handler for when a choice is made.
+     * Checks whether chosen number matches description,
+     * Generates new description,
+     * Recalculates new Number
+     * (and a whole lot of other stuff...)
+     */
+    private void choiceMadeHandler(int index){
+        //TODO
+        //just changes number for now
+        changeChoiceButton(index);
+    }
 
     /* Randomly generates a number in between maxChoice and minChoice
      * that does not already exist inside currentNumbers[]
@@ -105,6 +130,7 @@ public class DefineGame extends Activity {
         }
         return false;
     }
+
 
 }
 
