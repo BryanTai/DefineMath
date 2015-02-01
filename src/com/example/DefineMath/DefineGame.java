@@ -1,20 +1,17 @@
 package com.example.DefineMath;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
-
-import java.util.Arrays;
 
 /**
  * Created by Bryan on 07/01/2015.
  */
 public class DefineGame extends Activity {
     //The range of possible numbers
-    final int MAX = 10;
-    final int MIN = -MAX;
+    int maxChoice = 10;
+    int minChoice = -maxChoice;
 
     //The # of possible choices
     //IF THIS GETS UPDATED, UI BUTTONS NEED TO BE UPDATED AS WELL
@@ -70,15 +67,15 @@ public class DefineGame extends Activity {
 
 
 
-    /* Randomly generates a number in between MAX and MIN
+    /* Randomly generates a number in between maxChoice and minChoice
      * that does not already exist inside currentNumbers[]
      */
     private int generateChoice() {
         int choice;
         do {
-            int range = (MAX - MIN) + 1;
-            choice = (int) (range * Math.random()) + MIN;
-        } while (Arrays.asList(currentNumbers).contains(choice));
+            int range = (maxChoice - minChoice) + 1;
+            choice = (int) (range * Math.random()) + minChoice;
+        } while (currentlyContains(choice));
         return choice;
     }
 
@@ -99,6 +96,15 @@ public class DefineGame extends Activity {
         choiceButtons[index].setText(Integer.toString(newChoice));
     }
 
+    /* True if and only if num is in currentNumbers
+     * (and thus is currently displayed in choiceButtons)
+     */
+    private boolean currentlyContains(int num){
+        for(int i : currentNumbers){
+            if(i == num) return true;
+        }
+        return false;
+    }
 
 }
 
