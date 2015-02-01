@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DefineMath</string>
+    <string name="defineMath">Define Math</string>
+    <string name="newGame">New Game</string>
+    <string name="bryantai">A Game By Bryan Tai</string>
+
+    <string name="pickANumber">Pick A Number That Is</string>
+
+    <string name="mystery">\?\?\?</string>
+    <string name="even">EVEN</string>
+    <string name="odd">ODD</string>
+    <string name="positive">POSITIVE</string>
+    <string name="negative">NEGATIVE</string>
+
+</resources>
