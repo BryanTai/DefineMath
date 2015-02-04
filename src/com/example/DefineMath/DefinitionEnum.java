@@ -15,5 +15,8 @@ public enum DefinitionEnum {
     MORE,LESS,
     EQUAL,INEQUAL;
 
-    public static final int POS = 3;
+    //Total number of POSSIBLE definitions
+    public static final int POS = 6;
+
+//    public static DefinitionEnum
 }

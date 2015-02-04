@@ -5,28 +5,38 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Bryan on 07/01/2015.
  */
 public class DefineGame extends Activity {
     //The range of possible numbers
+    //Increases by 10 every 10 levels
     int maxChoice = 10;
     int minChoice = -maxChoice;
 
     //The # of possible choices
-    //IF THIS GETS UPDATED, UI BUTTONS NEED TO BE UPDATED AS WELL
+    //NOTE: IF THIS EVER GETS UPDATED, ALL THE UI BUTTONS NEED TO BE UPDATED AS WELL
     final int CHOICES = 4;
 
     //The possible number choices
+    //and the Buttons that contain them
     int[] currentNumbers;
     Button[] choiceButtons;
 
-    //Holds the all the DefinitionEnums of each number in each choiceButton
-    int[][] allPossibleDefs;
+    //Represents the POSSIBLE Definitions of each Button as boolean matrix
+    //CHOICES by DefinitionEnums.POS/2 matrix. 4 x 6 as of now.
+    // Row is Button. Column is Definition Pos, Neg, Even, Odd, Prime, Comp
+    boolean[][] allPossibleDefs;
 
-    //The master list of all the possible definitions this turn.
-    DefinitionEnum[] masterPossibleDefs;
+    //The master list of all the POSSIBLE DEFINITIONS this turn.
+    //There are 6 as of now. Pos, Neg, Even, Odd, Prime, Comp
+    int[] masterPossibleDefs;
+
+    //The score that will increase each time player picks a correct number.
+    int score;
+    TextView scoreText;
 
 
     /**
@@ -47,6 +57,27 @@ public class DefineGame extends Activity {
         currentNumbers = new int[CHOICES];
         choiceButtons = new Button[CHOICES];
 
+        initializeButtons();
+
+
+        // Row is Button. Column is Definition Pos, Neg, Even, Odd, Prime, Comp
+        allPossibleDefs = new boolean[CHOICES][DefinitionEnum.POS];
+        masterPossibleDefs = new int[DefinitionEnum.POS];
+
+        // Reset score to zero.
+        scoreText = (TextView) findViewById(R.id.scoreNumber);
+        setScore(0);
+
+        //Determine the Possible Definitions for each Button
+        updateAllPossibleDefs();
+
+    }
+
+    /*
+     * Gets references to the Button Widgets
+     * and creates a random number for each.
+     */
+    private void initializeButtons() {
         //TODO
         //There's gotta be a better way to do this...
         choiceButtons[0] = (Button)findViewById(R.id.button0);
@@ -68,15 +99,10 @@ public class DefineGame extends Activity {
                 public void onClick(View v) {
                     //On Button press, check if number matches description
                     //and a whole bunch of other stuff...
-
                     choiceMadeHandler(thisButtonIndex);
                 }
             });
         }
-
-        allPossibleDefs = new int[CHOICES][];
-        masterPossibleDefs = new DefinitionEnum[DefinitionEnum.POS];
-
     }
 
     /* pre: 0 <= index < CHOICES
@@ -90,6 +116,7 @@ public class DefineGame extends Activity {
         //TODO
         //just changes number for now
         changeChoiceButton(index);
+        increaseScore();
     }
 
     /* Randomly generates a number in between maxChoice and minChoice
@@ -119,6 +146,36 @@ public class DefineGame extends Activity {
      */
     private void setButtonText(int index, int newChoice) {
         choiceButtons[index].setText(Integer.toString(newChoice));
+    }
+
+    /* Updates entire matrix of allPossibleDefs
+    */
+    private void updateAllPossibleDefs(){
+        for(int b=0; b < CHOICES; b++){
+            updatePossibleDefs(b);
+        }
+    }
+
+    /* pre: 0 <= button < CHOICES
+     * Updates the boolean matrix of allPossibleDefinitions
+     * with the correct boolean values.
+     */
+    private void updatePossibleDefs(int button){
+        //TODO
+    }
+
+    /*Increases the score and scoreText by 1.
+     */
+    private void increaseScore(){
+        score++;
+        scoreText.setText(Integer.toString(score));
+    }
+
+    /* Sets score and updates scoreText.
+     */
+    private void setScore(int s){
+        score = s;
+        scoreText.setText(Integer.toString(score));
     }
 
     /* True if and only if num is in currentNumbers

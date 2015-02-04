@@ -5,12 +5,13 @@
     <string name="newGame">New Game</string>
     <string name="bryantai">A Game By Bryan Tai</string>
 
-    <string name="pickANumber">Pick A Number That Is</string>
+    <string name="pickANumber">Pick A Number That Is...</string>
 
     <string name="mystery">\?\?\?</string>
     <string name="even">EVEN</string>
     <string name="odd">ODD</string>
     <string name="positive">POSITIVE</string>
     <string name="negative">NEGATIVE</string>
+    <string name="Score">Score:</string>
 
 </resources>
