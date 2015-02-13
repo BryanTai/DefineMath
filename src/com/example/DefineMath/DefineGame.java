@@ -26,18 +26,16 @@ public class DefineGame extends Activity {
     int[] buttonArray = {R.id.button0,R.id.button1,R.id.button2,R.id.button3};
 
     //Represents the POSSIBLE Definitions of each Button as boolean matrix
-    //CHOICES by DefinitionEnums.POS/2 matrix. 4 x 6 as of now.
+    //CHOICES by ChoiceEnums.POS/2 matrix. 4 x 6 as of now.
     // Row is Button. Column is Definition Pos, Neg, Even, Odd, Prime, Comp
     boolean[][] allPossibleDefs;
 
-    //The master list of all the POSSIBLE DEFINITIONS this turn.
+    //The master list of how many ChoiceButtons fall under each of the POSSIBLE DEFINITIONS this turn.
     //There are 6 as of now. Pos, Neg, Even, Odd, Prime, Comp
     int[] masterPossibleDefs;
 
-    //The score that will increase each time player picks a correct number.
-    int score;
-    TextView scoreText;
-
+    //Keeps track of score
+    ScoreBoard scoreBoard;
 
     /**
      * Called when the activity is first created.
@@ -58,12 +56,11 @@ public class DefineGame extends Activity {
         initializeButtons();
 
         // Row is Button. Column is Definition Pos, Neg, Even, Odd, Prime, Comp
-        allPossibleDefs = new boolean[CHOICES][DefinitionEnum.POS];
-        masterPossibleDefs = new int[DefinitionEnum.POS];
+        allPossibleDefs = new boolean[CHOICES][ChoiceEnum.POS];
+        masterPossibleDefs = new int[2 * ChoiceEnum.POS];
 
         // Reset score to zero.
-        scoreText = (TextView) findViewById(R.id.scoreNumber);
-        setScore(0);
+        scoreBoard = new ScoreBoard((TextView) findViewById(R.id.scoreNumber));
 
         //Determine the Possible Definitions for each Button
         updateAllPossibleDefs();
@@ -108,7 +105,7 @@ public class DefineGame extends Activity {
         //TODO
         //just changes number for now
         changeChoiceButton(index);
-        increaseScore();
+        scoreBoard.increaseScore();
     }
 
     /* Randomly generates a number in between maxChoice and minChoice
@@ -135,8 +132,9 @@ public class DefineGame extends Activity {
     /* Updates entire matrix of allPossibleDefs
     */
     private void updateAllPossibleDefs(){
+        //TODO
         for(int b=0; b < CHOICES; b++){
-            updatePossibleDefs(b);
+            //updatePossibleDefs(b);
         }
     }
 
@@ -144,34 +142,22 @@ public class DefineGame extends Activity {
      * Updates the boolean matrix of allPossibleDefinitions
      * with the correct boolean values.
      */
-    private void updatePossibleDefs(int button){
+    private void updateMasterDefs(int button){
         //TODO
-        ChoiceButton cb = choiceButtons[button];
-        boolean[] defs = DefinitionEnum.assignDefinitions(cb.getChoice());
-        cb.setDefinitions(defs);
+
     }
 
-    /*Increases the score and scoreText by 1.
-     */
-    private void increaseScore(){
-        score++;
-        scoreText.setText(Integer.toString(score));
-    }
 
-    /* Sets score and updates scoreText.
-     */
-    private void setScore(int s){
-        score = s;
-        scoreText.setText(Integer.toString(score));
-    }
 
-    /* REQUIRES: choiceButtons is not NULL
+    /*
      * True if and only if a choiceButton contains num
      * (and thus is currently displayed in choiceButtons)
+     * If cb is null, return false
      */
     private boolean currentlyContains(int num){
 
         for(ChoiceButton cb : choiceButtons){
+            if(cb == null) return false;
             if(cb.getChoice() == num) return true;
         }
         return false;
