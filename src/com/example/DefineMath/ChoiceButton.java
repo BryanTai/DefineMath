@@ -42,9 +42,10 @@ public class ChoiceButton {
     //Based on function written by Oscar_Sanchez
     //Note that negative numbers are composites.
     private boolean isPrime(int x){
+        if (x < 0) return false; //Negative numbers are not prime
         //check if x is a multiple of 2
         //but not actually 2 because 2 is prime
-        if ((x > 2) && isEven(x)) return false;
+        if (x > 2 && isEven(x)) return false;
         //if not, then just check the odds
         for(int i=3; i*i<=x; i+=2) {
             if(x%i==0)

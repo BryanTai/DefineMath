@@ -12,6 +12,9 @@
     <string name="odd">ODD</string>
     <string name="positive">POSITIVE</string>
     <string name="negative">NEGATIVE</string>
+    <string name="prime">PRIME</string>
+    <string name="composite">NOT PRIME</string>
+
     <string name="Score">Score:</string>
 
 </resources>

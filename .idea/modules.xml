@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/git/DefineMath/DefineMath.iml" filepath="$USER_HOME$/git/DefineMath/DefineMath.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DefineMath.iml" filepath="$PROJECT_DIR$/DefineMath.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestModule/TestModule.iml" filepath="$PROJECT_DIR$/TestModule/TestModule.iml" />
     </modules>
   </component>
 </project>
